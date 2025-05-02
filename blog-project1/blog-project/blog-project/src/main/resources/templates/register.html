@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Registration</title>
+    <script>
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const data = {
+                username: username,
+                password: password
+            };
+
+            fetch('http://localhost:8080/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.error) {
+                        document.getElementById('error').textContent = result.error;
+                    } else {
+                        document.getElementById('success').textContent = result.success;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+<h1>User Registration</h1>
+<form>
+    <label for="username">Username:</label>
+    <input type="text" id="username" required><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" required><br>
+    <span id="error" style="color: red;"></span><br>
+    <span id="success" style="color: green;"></span><br>
+    <button type="button" onclick="submitForm()">Register</button>
+</form>
+</body>
+</html>

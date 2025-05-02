@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>修改密码</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 50;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        input:focus,
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-10">
+        <div class="px-6 flex items-center justify-between h-16">
+            <!-- logo -->
+            <div class="font-['Pacifico'] text-primary text-2xl">logo</div>
+            <!-- 返回按钮 -->
+            <button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap"
+                onclick="goBackToHome()">
+                <div class="w-4 h-4 flex items-center justify-center mr-2">
+                    <i class="ri-arrow-left-line"></i>
+                </div>
+                <span>返回</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="pt-16 min-h-screen">
+        <div class="ml-60 flex-1 p-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">修改密码</h1>
+                </div>
+    
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <form action="#" method="post">
+                        <div class="mb-4">
+                            <label for="current-password" class="block text-sm font-medium text-gray-700">当前密码</label>
+                            <input type="password" id="current-password" name="current-password"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="mb-4">
+                            <label for="new-password" class="block text-sm font-medium text-gray-700">新密码</label>
+                            <input type="password" id="new-password" name="new-password"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="mb-6">
+                            <label for="confirm-password" class="block text-sm font-medium text-gray-700">确认新密码</label>
+                            <input type="password" id="confirm-password" name="confirm-password"
+                                class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit"
+                                class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                                <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                    <i class="ri-check-line"></i>
+                                </div>
+                                <span>保存更改</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function goBackToHome() {
+            window.location.href = 'Home.html';
+        }
+    </script>
+</body>
+
+</html>
