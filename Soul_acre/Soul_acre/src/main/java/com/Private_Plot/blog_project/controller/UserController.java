@@ -144,7 +144,5 @@ public class UserController {
         return new ResponseEntity<>(responseBody, HttpStatus.OK);
     }
 
-    void printf(String format, Object... args) {
-        System.out.printf(format, args);
-    }
+
 }
