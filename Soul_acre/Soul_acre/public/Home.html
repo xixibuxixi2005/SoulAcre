@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Community Platform</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', secondary: '#10b981' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 50;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        input:focus,
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-10">
+        <div class="px-6 flex items-center justify-between h-16">
+            <!-- Logo and Main Menu -->
+            <div class="flex items-center space-x-8">
+                <div class="font-['Pacifico'] text-primary text-2xl">logo</div>
+                
+                <nav class="hidden md:flex space-x-6">
+                    <button class="menu-item py-2 px-1 border-b-2 border-primary font-medium text-primary" data-target="ai-gathering">AI聚集地</button>
+                    <button class="menu-item py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-gray-900" data-target="take-break">休息片刻</button>
+                    <button class="menu-item py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-gray-900" data-target="blog">博客文章</button>
+                    <button class="menu-item py-2 px-1 border-b-2 border-transparent font-medium text-gray-600 hover:text-gray-900"data-target="about-website">关于网站</button>
+                </nav>
+            </div>
+            
+            <!-- User Profile -->
+            <div class="relative">
+                <div class="flex items-center space-x-3 cursor-pointer" id="user-menu-button">
+                    <span class="text-sm font-medium text-gray-700">Jennifer Wilson</span>
+                    <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                        <img src="https://public.readdy.ai/ai/img_res/a8eec6f96a922e54a55ac8f041303ee6.jpg" alt="User Avatar" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                
+                <div class="dropdown mt-2 w-48 bg-white rounded shadow-lg py-1" id="user-dropdown">
+                    <!-- 个人空间链接 -->
+                    <a href="Own.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-user-line"></i>
+                            </div>
+                            <span>个人空间</span>
+                        </div>
+                    </a>
+                    <a href="mima.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-lock-password-line"></i>
+                            </div>
+                            <span>更改密码</span>
+                        </div>
+                    </a>
+                    <div class="border-t border-gray-100"></div>
+                    <a href="#" class="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-logout-box-line"></i>
+                            </div>
+                            <span>注销</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="pt-16 min-h-screen">
+        <!-- AI 聚集区部分 -->
+        <section id="ai-gathering" class="content-section flex">
+        <!-- 侧边栏 -->
+        <aside class="w-60 bg-white shadow-sm h-[calc(100vh-4rem)] fixed left-0 top-16 border-r border-gray-100">
+            <div class="p-4">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                            <i class="ri-search-line"></i>
+                        </div>
+                    </div>
+                    <input type="text"
+                        class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5"
+                        placeholder="搜索">
+                </div>
+            </div>
+    
+            <nav class="mt-2">
+                <div class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    AI 模型
+                </div>
+                <a href="#" class="sidebar-item active flex items-center px-4 py-2.5 text-sm font-medium">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-primary">
+                        <i class="ri-robot-line"></i>
+                    </div>
+                    <span>深度求索</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-brain-line"></i>
+                    </div>
+                    <span>克劳德</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-openai-fill"></i>
+                    </div>
+                    <span>GPT-4</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-google-line"></i>
+                    </div>
+                    <span>双子座</span>
+                </a>
+    
+                <div class="px-3 py-2 mt-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                    社区
+                </div>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-discuss-line"></i>
+                    </div>
+                    <span>AI 讨论</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-code-box-line"></i>
+                    </div>
+                    <span>提示工程</span>
+                </a>
+                <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                    <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                        <i class="ri-lightbulb-line"></i>
+                    </div>
+                    <span>应用案例</span>
+                </a>
+            </nav>
+        </aside>
+    
+        <!-- 主要内容 -->
+        <div class="ml-60 flex-1 p-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">深度求索</h1>
+                    <button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                            <i class="ri-add-line"></i>
+                        </div>
+                        <span>新建对话</span>
+                    </button>
+                </div>
+    
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-lg font-semibold mb-4">关于深度求索</h2>
+                    <p class="text-gray-700 mb-4">深度求索是一款先进的人工智能模型，专为高级推理、编程以及创造性任务而设计。它擅长理解复杂的指令，并能在多个不同领域中生成高质量的回复。</p>
+    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mb-2">
+                                <i class="ri-code-line ri-lg"></i>
+                            </div>
+                            <h3 class="font-medium mb-1">卓越编程能力</h3>
+                            <p class="text-sm text-gray-600">支持多语言的高级代码生成功能</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mb-2">
+                                <i class="ri-brain-line ri-lg"></i>
+                            </div>
+                            <h3 class="font-medium mb-1">深度推理</h3>
+                            <p class="text-sm text-gray-600">复杂问题解决与逻辑分析</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="w-8 h-8 flex items-center justify-center text-primary mb-2">
+                                <i class="ri-file-text-line ri-lg"></i>
+                            </div>
+                            <h3 class="font-medium mb-1">内容创作</h3>
+                            <p class="text-sm text-gray-600">为各种场景生成高质量文本</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h2 class="text-lg font-semibold mb-4">最近对话</h2>
+    
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div
+                                class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full text-primary mr-4">
+                                <i class="ri-message-3-line ri-lg"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">React 组件架构</h3>
+                                <p class="text-sm text-gray-600">2025年4月8日 · 24条消息</p>
+                            </div>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                                <i class="ri-more-2-fill"></i>
+                            </div>
+                        </div>
+    
+                        <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div
+                                class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full text-primary mr-4">
+                                <i class="ri-message-3-line ri-lg"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">机器学习项目计划</h3>
+                                <p class="text-sm text-gray-600">2025年4月7日 · 18条消息</p>
+                            </div>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                                <i class="ri-more-2-fill"></i>
+                            </div>
+                        </div>
+    
+                        <div class="flex items-center p-3 rounded-lg hover:bg-gray-50 cursor-pointer">
+                            <div
+                                class="w-10 h-10 flex items-center justify-center bg-blue-100 rounded-full text-primary mr-4">
+                                <i class="ri-message-3-line ri-lg"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-medium">营销策略分析</h3>
+                                <p class="text-sm text-gray-600">2025年4月5日 · 32条消息</p>
+                            </div>
+                            <div class="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600">
+                                <i class="ri-more-2-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h2 class="text-lg font-semibold mb-4">使用情况统计</h2>
+    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1">对话总数</p>
+                            <p class="text-2xl font-semibold">147</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1">已发送消息数</p>
+                            <p class="text-2xl font-semibold">2,893</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p class="text-sm text-gray-500 mb-1">使用时长</p>
+                            <p class="text-2xl font-semibold">78小时</p>
+                        </div>
+                    </div>
+    
+                    <div class="h-64" id="usage-chart"></div>
+                </div>
+            </div>
+        </div>
+        </section>
+        
+        <!-- 放松休息区 -->
+        <section id="take-break" class="content-section hidden flex">
+            <!-- 侧边栏 -->
+            <aside class="w-60 bg-white shadow-sm h-[calc(100vh-4rem)] fixed left-0 top-16 border-r border-gray-100">
+                <div class="p-4">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                <i class="ri-search-line"></i>
+                            </div>
+                        </div>
+                        <input type="text"
+                            class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5"
+                            placeholder="搜索">
+                    </div>
+                </div>
+        
+                <nav class="mt-2">
+                    <div class="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        放松活动
+                    </div>
+                    <a href="#" class="sidebar-item active flex items-center px-4 py-2.5 text-sm font-medium">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-primary">
+                            <i class="ri-gamepad-line"></i>
+                        </div>
+                        <span>游戏</span>
+                    </a>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-movie-line"></i>
+                        </div>
+                        <span>电影</span>
+                    </a>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-book-open-line"></i>
+                        </div>
+                        <span>书籍</span>
+                    </a>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-music-line"></i>
+                        </div>
+                        <span>音乐</span>
+                    </a>
+        
+                    <div class="px-3 py-2 mt-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                        社交
+                    </div>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-team-line"></i>
+                        </div>
+                        <span>好友</span>
+                    </a>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-group-line"></i>
+                        </div>
+                        <span>群组</span>
+                    </a>
+                    <a href="#" class="sidebar-item flex items-center px-4 py-2.5 text-sm font-medium text-gray-700">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3 text-gray-500">
+                            <i class="ri-calendar-event-line"></i>
+                        </div>
+                        <span>活动</span>
+                    </a>
+                </nav>
+            </aside>
+        
+            <!-- 主要内容 -->
+            <div class="ml-60 flex-1 p-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="flex items-center justify-between mb-6">
+                        <h1 class="text-2xl font-bold text-gray-900">游戏</h1>
+                        <div class="flex space-x-2">
+                            <button
+                                class="bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                                <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                    <i class="ri-filter-3-line"></i>
+                                </div>
+                                <span>筛选</span>
+                            </button>
+                            <button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                                <div class="w-4 h-4 flex items-center justify-center mr-2">
+                                    <i class="ri-add-line"></i>
+                                </div>
+                                <span>添加游戏</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                        <!-- 新增游戏卡片 -->
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/absurd-trolley-problems/" target="_blank">
+                                    <img src="https://neal.fun/link-images/absurd-trolley-problems.svg" alt="荒谬电车难题"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/absurd-trolley-problems/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">荒谬电车难题</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">哲学难题模拟器</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/ambient-chaos/" target="_blank">
+                                    <img src="https://neal.fun/link-images/ambient-chaos.svg" alt="环境混沌"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/ambient-chaos/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">环境混沌</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">动态粒子模拟器</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/asteroid-launcher/" target="_blank">
+                                    <img src="https://neal.fun/link-images/asteroid-launcher.svg" alt="小行星发射器"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/asteroid-launcher/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">小行星发射器</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">天体碰撞模拟</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/auction-game/" target="_blank">
+                                    <img src="https://neal.fun/link-images/auction-game.svg" alt="拍卖游戏"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/auction-game/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">拍卖游戏</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">竞拍争夺物品</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/baby-map/" target="_blank">
+                                    <img src="https://neal.fun/link-images/baby-map.svg" alt="婴儿地图"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/baby-map/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">婴儿地图</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">一起来探索世界吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/dark-patterns/" target="_blank">
+                                    <img src="https://neal.fun/link-images/dark-patterns.svg" alt="黑暗降临"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/dark-patterns/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">黑暗降临</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">用智慧驱散黑暗吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/days-since-incident/" target="_blank">
+                                    <img src="https://neal.fun/link-images/days-since-incident.svg" alt="那天以后"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/days-since-incident/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">那天以后</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">随时间流逝</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/deep-sea/" target="_blank">
+                                    <img src="https://neal.fun/link-images/deep-sea.svg" alt="深海"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/deep-sea/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">深海</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">海洋之中是什么</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/design-the-next-iphone/" target="_blank">
+                                    <img src="https://neal.fun/link-images/design-the-next-iphone.svg" alt="下一个iPhone"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/design-the-next-iphone/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">下一个iPhone</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">亲自设计iPhone</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/earth-reviews/" target="_blank">
+                                    <img src="https://neal.fun/link-images/earth-reviews.svg" alt="评分合集"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/earth-reviews/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">评分合集</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">地球上的事情都可以在这里进行评论</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/infinite-craft/" target="_blank">
+                                    <img src="https://neal.fun/link-images/infinite-craft.svg" alt="无限工艺"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/infinite-craft/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">无限工艺</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">探索沙盒游戏</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/internet-artifacts/" target="_blank">
+                                    <img src="https://neal.fun/link-images/internet-artifacts.svg" alt="文物回魂"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/internet-artifacts/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">文物回魂</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">探索文物的乐趣</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/lets-settle-this/" target="_blank">
+                                    <img src="https://neal.fun/link-images/lets-settle-this.svg" alt="投票解决问题"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/lets-settle-this/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">投票解决问题</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">用投票解决一些网络难题吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/life-checklist/" target="_blank">
+                                    <img src="https://neal.fun/link-images/life-checklist.svg" alt="愿望清单"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/life-checklist/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">愿望清单</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">记录那些愿望</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/life-stats/" target="_blank">
+                                    <img src="https://neal.fun/link-images/life-stats.svg" alt="人生数据统计"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/life-stats/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">人生数据统计</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">记录人生的那些瞬间</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/logos-from-memory/" target="_blank">
+                                    <img src="https://neal.fun/link-images/logos-from-memory.svg" alt="记录绘图"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/logos-from-memory/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">记录绘图</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">快速记住那些标志</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/paper/" target="_blank">
+                                    <img src="https://neal.fun/link-images/paper.svg" alt="纸张"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/paper/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">纸张</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">纸张游戏</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/password-game/" target="_blank">
+                                    <img src="https://neal.fun/link-images/password-game.svg" alt="破解密码"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/password-game/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">破解密码</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">益智解密</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/perfect-circle/" target="_blank">
+                                    <img src="https://neal.fun/link-images/perfect-circle.svg" alt="完美图形"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/perfect-circle/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">完美图形</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">去追求完美吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/printing-money/" target="_blank">
+                                    <img src="https://neal.fun/link-images/printing-money.svg" alt="印钞"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/printing-money/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">印钞</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">经营模拟</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/progress/" target="_blank">
+                                    <img src="https://neal.fun/link-images/progress.svg" alt="进度"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/progress/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">进度</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">保持进度哦</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/rocks/" target="_blank">
+                                    <img src="https://neal.fun/link-images/rocks.svg" alt="岩石"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/rocks/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">岩石</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">好像真的只有石头哦</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/sell-sell-sell/" target="_blank">
+                                    <img src="https://neal.fun/link-images/sell-sell-sell.svg" alt="大甩卖"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/sell-sell-sell/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">大甩卖</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">尽可能多买</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/share-this-page/" target="_blank">
+                                    <img src="https://neal.fun/link-images/share-this-page.svg" alt="分享此页"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/share-this-page/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">分享此页</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">和大家一起分享吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/size-of-space/" target="_blank">
+                                    <img src="https://neal.fun/link-images/size-of-space.svg" alt="空间的大小"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/size-of-space/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">空间的大小</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">探索空间吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/space-elevator/" target="_blank">
+                                    <img src="https://neal.fun/link-images/space-elevator.svg" alt="电梯游戏"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/space-elevator/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">电梯游戏</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">在电梯里愉快游戏吧</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/speed/" target="_blank">
+                                    <img src="https://neal.fun/link-images/speed.svg" alt="飞速"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/speed/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">飞速</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">加速，加速！</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/spend/" target="_blank">
+                                    <img src="https://neal.fun/link-images/spend.svg" alt="消费"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/spend/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">消费</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">合理的发展</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/stimulation-clicker/" target="_blank">
+                                    <img src="https://neal.fun/link-images/stimulation-clicker.svg" alt="疯狂点击"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/stimulation-clicker/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">疯狂点击</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">点击，让奇迹发生</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/sun-vs-moon/" target="_blank">
+                                    <img src="https://neal.fun/link-images/sun-vs-moon.svg" alt="日月之争"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/sun-vs-moon/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">日月之争</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">谁能胜出呢</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/universe-forecast/" target="_blank">
+                                    <img src="https://neal.fun/link-images/universe-forecast.svg" alt="宇宙爆炸"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/universe-forecast/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">宇宙爆炸</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">探索宇宙的尽头</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/where-does-the-day-go/" target="_blank">
+                                    <img src="https://neal.fun/link-images/where-does-the-day-go.svg" alt="时光如梭"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/where-does-the-day-go/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">时光如梭</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">时间都去哪里了</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/where-does-the-day-go/" target="_blank">
+                                    <img src="https://neal.fun/link-images/who-was-alive.svg" alt="谁还活着"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/where-does-the-day-go/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">谁还活着</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">谁是那个幸存者呢</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="https://neal.fun/wonders-of-street-view/" target="_blank">
+                                    <img src="https://neal.fun/link-images/wonders-of-street-view.svg" alt="街景奇观"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="https://neal.fun/wonders-of-street-view/" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">街景奇观</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">不要错过这美丽的街景</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                            <div class="h-40 bg-gray-200 relative">
+                                <a href="数独.html" target="_blank">
+                                    <img src="numbergame.jpg" alt="数独"
+                                         class="w-full h-full object-cover object-top">
+                                </a>
+                            </div>
+                            <div class="p-4">
+                                <a href="数独.html" target="_blank" class="block">
+                                    <h3 class="font-semibold text-lg mb-1 hover:text-primary">数独</h3>
+                                </a>
+                                <p class="text-sm text-gray-600 mb-3">不要错过这美丽的街景</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <h2 class="text-lg font-semibold mb-4">游戏排行榜</h2>
+        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            排名</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            玩家</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            游戏</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            分数</th>
+                                        <th
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            最后游玩时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 mr-3">
+                                                    <img src="https://public.readdy.ai/ai/img_res/15884a2c00450b58fc32e919d984e541.jpg"
+                                                        alt="" class="h-8 w-8 rounded-full">
+                                                </div>
+                                                <div class="text-sm font-medium text-gray-900">Michael Chen</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">国际象棋</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2145</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025年4月8日</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 mr-3">
+                                                    <img src="https://public.readdy.ai/ai/img_res/e7ca60d16cb3f4ba2590db1566a9fec6.jpg"
+                                                        alt="" class="h-8 w-8 rounded-full">
+                                                </div>
+                                                <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">数独</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1987</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025年4月7日</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="h-8 w-8 rounded-full bg-gray-200 flex-shrink-0 mr-3">
+                                                    <img src="https://public.readdy.ai/ai/img_res/23e9e43acfe88b77bf769c6badab3648.jpg"
+                                                        alt="" class="h-8 w-8 rounded-full">
+                                                </div>
+                                                <div class="text-sm font-medium text-gray-900">David Rodriguez</div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">文字谜题</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1856</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025年4月6日</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+        
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-lg font-semibold mb-4">你的游戏活动</h2>
+                        <div class="h-64" id="activity-chart"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 博客文章板块 -->
+        <section id="blog" class="content-section hidden">
+            <div class="max-w-5xl mx-auto p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <h1 class="text-2xl font-bold text-gray-900">博客文章</h1>
+                    <button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap">
+                        <div class="w-4 h-4 flex items-center justify-center mr-2">
+                            <i class="ri-add-line"></i>
+                        </div>
+                        <span>撰写新文章</span>
+                    </button>
+                </div>
+        
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-lg font-semibold">你的文章</h2>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                    <i class="ri-search-line"></i>
+                                </div>
+                            </div>
+                            <input type="text"
+                                class="bg-gray-50 border-none text-gray-900 text-sm rounded-lg block w-64 pl-10 p-2.5"
+                                placeholder="搜索文章...">
+                        </div>
+                    </div>
+        
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead>
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        标题</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        状态</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        发布日期</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        浏览量</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        操作</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">The Future of AI in Healthcare</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">已发布</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025年4月5日</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">1,243</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-edit-line"></i>
+                                                </div>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">Machine Learning Best Practices</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">已发布</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2025年3月28日</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">876</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-edit-line"></i>
+                                                </div>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">Ethical Considerations in AI Development
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span
+                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">草稿</span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">-</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                                        <div class="flex space-x-2">
+                                            <button class="text-blue-600 hover:text-blue-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-edit-line"></i>
+                                                </div>
+                                            </button>
+                                            <button class="text-red-600 hover:text-red-800">
+                                                <div class="w-5 h-5 flex items-center justify-center">
+                                                    <i class="ri-delete-bin-line"></i>
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-lg font-semibold mb-4">文章表现</h2>
+                        <div class="h-64" id="article-chart"></div>
+                    </div>
+        
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-lg font-semibold mb-4">热门话题</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
+                                </div>
+                                <span class="min-w-[80px] text-sm text-gray-600 ml-3">人工智能 (85%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 70%"></div>
+                                </div>
+                                <span class="min-w-[80px] text-sm text-gray-600 ml-3">机器学习 (70%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 65%"></div>
+                                </div>
+                                <span class="min-w-[80px] text-sm text-gray-600 ml-3">数据科学 (65%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 55%"></div>
+                                </div>
+                                <span class="min-w-[80px] text-sm text-gray-600 ml-3">神经网络 (55%)</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                    <div class="bg-primary h-2.5 rounded-full" style="width: 45%"></div>
+                                </div>
+                                <span class="min-w-[80px] text-sm text-gray-600 ml-3">深度学习 (45%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于网站模块 -->
+        <section id="about-website" class="content-section hidden">
+            <div class="max-w-5xl mx-auto p-6">
+                <div class="bg-white rounded-lg shadow-sm p-8 mb-8">
+                    <h1 class="text-2xl font-bold text-gray-900 mb-6">关于这个网站</h1>
+        
+                    <div class="space-y-6 text-gray-700 leading-relaxed">
+                        <p>忙碌了一番的F师傅和Z师傅忙碌了一番，终于，我们终于慢慢的搭建了这个网站，几经修改，几经重来，最后，我们完成了这个小玩意。</p>
+        
+                        <p>这就是Z师傅和F师傅做出来的小玩意，希望大家玩的开心。当然了，世间的事物都会随着时间的流逝而变化不停，我们的网站也需要更新迭代，如果你有好的建议欢迎联系我们（F师傅）提出你的建议哦，另外，我们的网站中蕴藏着一个小彩蛋，希望大家如果喜欢的话，可以去尝试着发现哦（Z师傅会很期待的）
+                        </p>
+        
+                        <div class="mt-8 p-4 bg-blue-50 rounded-lg">
+                            <h3 class="font-semibold text-lg mb-4">联系我们</h3>
+                            <ul class="space-y-3">
+                                <li>📞 联系F师傅：
+                                    <ul class="ml-6 space-y-2 mt-2">
+                                        <li>QQ号：<strong class="text-primary">2801040329</strong></li>
+                                        <li>微信号：<strong class="text-primary">fushuo1354</strong></li>
+                                    </ul>
+                                </li>
+                                <li>🎣 摸鱼的Z师傅：
+                                    <ul class="ml-6 space-y-2 mt-2">
+                                        <li>QQ号：<strong class="text-primary">3283587409</strong></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+        
+                        <div class="mt-6 p-4 border-l-4 border-primary bg-gray-50">
+                            <p class="text-sm italic text-gray-600">✨ 小提示：彩蛋藏在网站的某个地方，快速的点击鼠标会有惊喜发现哦～</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <script>
+        // 用户下拉菜单切换
+            const userMenuButton = document.getElementById('user-menu-button');
+            const userDropdown = document.getElementById('user-dropdown');
+
+            userMenuButton.addEventListener('click', () => {
+                userDropdown.classList.toggle('active');
+            });
+
+            // 点击外部时关闭下拉菜单
+            document.addEventListener('click', (event) => {
+                if (!userMenuButton.contains(event.target) && !userDropdown.contains(event.target)) {
+                    userDropdown.classList.remove('active');
+                }
+            });
+
+            // 菜单导航
+            const menuItems = document.querySelectorAll('.menu-item');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 移除所有菜单项的激活类
+                    menuItems.forEach(menuItem => {
+                        menuItem.classList.remove('border-primary', 'text-primary');
+                        menuItem.classList.add('border-transparent', 'text-gray-600');
+                    });
+
+                    // 为点击的菜单项添加激活类
+                    item.classList.remove('border-transparent', 'text-gray-600');
+                    item.classList.add('border-primary', 'text-primary');
+
+                    // 隐藏所有内容区域
+                    contentSections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+
+                    // 显示选中的内容区域
+                    const targetId = item.getAttribute('data-target');
+                    document.getElementById(targetId).classList.remove('hidden');
+                });
+            });
+
+            // 初始化图表
+            document.addEventListener('DOMContentLoaded', function () {
+                // 使用情况图表
+                const usageChart = echarts.init(document.getElementById('usage-chart'));
+                usageChart.setOption({
+                    animation: false,
+                    tooltip: {
+                        trigger: 'axis',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        textStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    grid: {
+                        top: 10,
+                        right: 10,
+                        bottom: 20,
+                        left: 40
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['3月3日', '3月10日', '3月17日', '3月24日', '3月31日', '4月7日'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#d1d5db'
+                            }
+                        },
+                        axisLabel: {
+                            color: '#1f2937'
+                        }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            lineStyle: {
+                                color: '#d1d5db'
+                            }
+                        },
+                        axisLabel: {
+                            color: '#1f2937'
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#e5e7eb'
+                            }
+                        }
+                    },
+                    series: [{
+                        name: '使用时长（小时）',
+                        data: [8, 12, 16, 10, 15, 17],
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        lineStyle: {
+                            color: 'rgba(87, 181, 231, 1)'
+                        },
+                        areaStyle: {
+                            color: {
+                                type: 'linear',
+                                x: 0,
+                                y: 0,
+                                x2: 0,
+                                y2: 1,
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'rgba(87, 181, 231, 0.2)'
+                                }, {
+                                    offset: 1,
+                                    color: 'rgba(87, 181, 231, 0.05)'
+                                }]
+                            }
+                        }
+                    }]
+                });
+
+                // 活动图表
+                const activityChart = echarts.init(document.getElementById('activity-chart'));
+                activityChart.setOption({
+                    animation: false,
+                    tooltip: {
+                        trigger: 'axis',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        textStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    legend: {
+                        data: ['国际象棋', '数独', '填字游戏'],
+                        bottom: 0,
+                        textStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    grid: {
+                        top: 10,
+                        right: 10,
+                        bottom: 60,
+                        left: 40
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                        axisLine: {
+                            lineStyle: {
+                                color: '#d1d5db'
+                            }
+                        },
+                        axisLabel: {
+                            color: '#1f2937'
+                        }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        axisLine: {
+                            lineStyle: {
+                                color: '#d1d5db'
+                            }
+                        },
+                        axisLabel: {
+                            color: '#1f2937'
+                        },
+                        splitLine: {
+                            lineStyle: {
+                                color: '#e5e7eb'
+                            }
+                        }
+                    },
+                    series: [
+                        {
+                            name: '国际象棋',
+                            type: 'bar',
+                            data: [5, 7, 3, 8, 6, 9, 4],
+                            itemStyle: {
+                                color: 'rgba(87, 181, 231, 1)',
+                                borderRadius: [4, 4, 0, 0]
+                            }
+                        },
+                        {
+                            name: '数独',
+                            type: 'bar',
+                            data: [3, 2, 6, 5, 4, 7, 8],
+                            itemStyle: {
+                                color: 'rgba(141, 211, 199, 1)',
+                                borderRadius: [4, 4, 0, 0]
+                            }
+                        },
+                        {
+                            name: '填字游戏',
+                            type: 'bar',
+                            data: [2, 4, 7, 3, 5, 1, 6],
+                            itemStyle: {
+                                color: 'rgba(251, 191, 114, 1)',
+                                borderRadius: [4, 4, 0, 0]
+                            }
+                        }
+                    ]
+                });
+
+                // 文章图表
+                const articleChart = echarts.init(document.getElementById('article-chart'));
+                articleChart.setOption({
+                    animation: false,
+                    tooltip: {
+                        trigger: 'item',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+                        textStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        right: 10,
+                        top: 'center',
+                        textStyle: {
+                            color: '#1f2937'
+                        }
+                    },
+                    series: [
+                        {
+                            name: '文章浏览量',
+                            type: 'pie',
+                            radius: ['40%', '70%'],
+                            center: ['40%', '50%'],
+                            avoidLabelOverlap: false,
+                            itemStyle: {
+                                borderRadius: 8,
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            },
+                            label: {
+                                show: false
+                            },
+                            emphasis: {
+                                label: {
+                                    show: false
+                                }
+                            },
+                            labelLine: {
+                                show: false
+                            },
+                            data: [
+                                { value: 1243, name: '人工智能在医疗领域的未来', itemStyle: { color: 'rgba(87, 181, 231, 1)' } },
+                                { value: 876, name: '机器学习最佳实践', itemStyle: { color: 'rgba(141, 211, 199, 1)' } },
+                                { value: 542, name: '神经网络详解', itemStyle: { color: 'rgba(251, 191, 114, 1)' } },
+                                { value: 487, name: '数据科学趋势', itemStyle: { color: 'rgba(252, 141, 98, 1)' } }
+                            ]
+                        }
+                    ]
+                });
+
+                // 窗口大小改变时调整图表大小
+                window.addEventListener('resize', function () {
+                    usageChart.resize();
+                    activityChart.resize();
+                    articleChart.resize();
+                });
+            });
+        
+    </script>
+</body>
+</html>
+

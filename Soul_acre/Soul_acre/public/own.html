@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人空间</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 50;
+        }
+
+        .dropdown.active {
+            display: block;
+        }
+
+        input:focus,
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-10">
+        <div class="px-6 flex items-center justify-between h-16">
+            <!-- logo -->
+            <div class="font-['Pacifico'] text-primary text-2xl">logo</div>
+            <!-- 返回按钮 -->
+            <button class="bg-primary text-white px-4 py-2 rounded-button flex items-center whitespace-nowrap"
+                onclick="goBackToHome()">
+                <div class="w-4 h-4 flex items-center justify-center mr-2">
+                    <i class="ri-arrow-left-line"></i>
+                </div>
+                <span>返回</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="pt-16 min-h-screen">
+        <div class="ml-60 flex-1 p-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-2xl font-bold text-gray-900">个人空间</h1>
+                </div>
+    
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                            <img src="https://public.readdy.ai/ai/img_res/a8eec6f96a922e54a55ac8f041303ee6.jpg" alt="用户头像"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-900">詹妮弗·威尔逊</h2>
+                            <p class="text-sm text-gray-600">邮箱：jennifer.wilson@example.com</p>
+                        </div>
+                    </div>
+    
+                    <div class="border-t border-gray-200 pt-6">
+                        <h2 class="text-lg font-semibold mb-4">个人信息</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">姓名</p>
+                                <p class="text-base font-medium text-gray-900">詹妮弗·威尔逊</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">邮箱</p>
+                                <p class="text-base font-medium text-gray-900">jennifer.wilson@example.com</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500 mb-1">注册时间</p>
+                                <p class="text-base font-medium text-gray-900">2025年4月1日</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        function goBackToHome() {
+            window.location.href = 'Home.html';
+        }
+    </script>
+</body>
+
+</html>
